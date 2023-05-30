@@ -1,10 +1,11 @@
 #include "worker.h"
-#include "client.h"
+#include "crypto.h"
+#include "dbworker.h"
 
 #include <QDebug>
 
 Worker::Worker()
 {
     qDebug() << "Worker";
-    Blocks bl;
+    DbWorker bl;
 }

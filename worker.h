@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include <blocks.h>
+#include "blocks.h"
 
 
 class Worker: public QObject

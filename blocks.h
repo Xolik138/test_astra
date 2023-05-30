@@ -1,6 +1,8 @@
 #ifndef BLOCKS_H
 #define BLOCKS_H
 
+#include "dbworker.h"
+
 #include <QCryptographicHash>
 #include <QList>
 
@@ -21,6 +23,7 @@ public:
     bool add_block(const std::string, std::string);
 private:
     QList<Block> blocks;
+    DbWorker *workDb;
 };
 
 #endif // BLOCKS_H

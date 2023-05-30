@@ -4,10 +4,10 @@
 #include <QObject>
 #include <QtNetwork/QTcpServer>
 
-#include <worker.h>
+#include "worker.h"
 
 
-class Server: public QTcpServer
+class Server: public QObject
 {
     Q_OBJECT
 public:

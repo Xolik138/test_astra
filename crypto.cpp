@@ -2,7 +2,7 @@
 
 Crypto::Crypto()
 {
-    hashArray = new QByteArray;
+
 }
 
 Crypto::~Crypto()

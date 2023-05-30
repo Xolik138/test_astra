@@ -4,14 +4,14 @@
 #include <QObject>
 #include <QCryptographicHash>
 
-class Crypto
+class Crypto: public QObject
 {
     Q_OBJECT
 public:
     Crypto();
     ~Crypto();
 private:
-    QByteArray *hashArray[];
+    // QByteArray *hashArray[];
 };
 
 #endif // CRYPTO_H

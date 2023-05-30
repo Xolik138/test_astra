@@ -16,6 +16,16 @@ SOURCES += \
         worker.cpp
 
 # Default rules for deployment.
+
+
+win32:INCLUDEPATH += "C:/Program Files/PostgreSQL/15/include"
+unix:INCLUDEPATH += /usr/include/postgresql
+
+win32:LIBS += "C:/Program Files/PostgreSQL/15/lib/libpq.lib"
+unix:LIBS += -L/usr/lib -lpq
+
+QT += sql
+
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
@@ -28,9 +38,3 @@ HEADERS += \
     worker.h
 
 FORMS +=
-
-win32:INCLUDEPATH += "C:/PostgreSQL/15/include"
-unix:INCLUDEPATH += /usr/include/postgresql
-
-win32:LIBS += "C:/PostgreSQL/15/lib/libpq.lib"
-unix:LIBS += -L/usr/lib -lpq
