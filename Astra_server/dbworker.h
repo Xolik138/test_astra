@@ -4,7 +4,8 @@
 #include <QObject>
 #include <QtSql/QSqlDatabase>
 #include <QSettings>
-
+#include <QSqlQuery>
+#include <QDebug>
 
 class DbWorker: public QObject
 {
@@ -13,7 +14,7 @@ public:
     DbWorker();
     ~DbWorker();
 
-    int proc_req(QString);
+    bool proc_req(QString, QSqlQuery&);
 
 private:
     bool initDb();

@@ -3,7 +3,7 @@
 #include <QString>
 #include <QDebug>
 #include <QCoreApplication>
-#include <QSqlQuery>
+
 #include <QSqlError>
 #include <QDir>
 #include <QFile>
@@ -37,9 +37,12 @@ DbWorker::DbWorker()
     {
         qDebug() << "Database connection error";
         qDebug() << db.lastError();
-        QCoreApplication::exit();
+        exit(0);
     }
-    proc_req("SELECT * FROM TEST;"); // DELETE
+    else
+    {
+        qDebug() << "Succsesful connect to DB!";
+    }
 }
 
 DbWorker::~DbWorker()
@@ -47,7 +50,6 @@ DbWorker::~DbWorker()
     delete db_info;
     db.close();
     qDebug() << "Close DB";
-    // delete db;
 }
 
 bool DbWorker::initDb()
@@ -78,25 +80,25 @@ bool DbWorker::get_info_db(QString& typeDb, QString& host, QString& dbName, QStr
     pass = db_info->value("pass").toString();
     db_info->endGroup();
 
+    qDebug() << "============ CONNECT INFO FOR DB ============";
     qDebug() << "TypeDB: " << typeDb;
     qDebug() << "Host: " << host;
     qDebug() << "DbName: " << dbName;
     qDebug() << "User: " << userName;
     qDebug() << "Pass: " << pass;
+    qDebug() << "=============================================";
 
     return true;
 }
 
-int DbWorker::proc_req(QString req)
+bool DbWorker::proc_req(QString req, QSqlQuery& query)
 {
-    QSqlQuery query;
-    query.exec(req);
-
-    int ans;
-    while (query.next())
-    {
-        qDebug() << query.value(0).toInt();
-        ans = query.value(0).toInt();
+    QSqlQuery t_query;
+    qDebug() << "req:" << req;
+    if (!t_query.exec(req)) {
+        qDebug() << "Error exec to DB";
+        return false;
     }
-    return ans;
+    query = t_query;
+    return true;
 }
